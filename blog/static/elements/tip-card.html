@@ -1,0 +1,59 @@
+<link rel="import"
+href="/static/bower_components/polymer/polymer.html">
+
+<link rel="import"
+href="/static/bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+
+<dom-module id="tip-card">
+
+    <template>
+
+    <style>
+    #salute {
+        font-size: 50pt;
+        text-align: center;
+        padding-left: 10px;
+        color: white;
+    }
+
+    .mCont {
+        font-size: 18pt;
+        font-family: Roboto, Arial, sans-serif;
+        font-weight: lighter;
+        color: white;
+        margin: 240px 24px 0 24px;
+    }
+
+    </style>
+
+
+
+    <div class="mCont">
+        <span id="salute">Yo!</span>
+        <span class="layout vertical center">{{mtip}}</span>
+    </div>
+
+
+
+</template>
+
+<script>
+Polymer({
+    is: "tip-card",
+    properties: {
+        mtip: {
+            type: String,
+            value: "We do not forgive, we do not forget, expect us."
+        },
+
+        ready: function() {
+            var i = Math.random() % 3;
+            var sal = document.getElementById('salute');
+            //alert(i);
+
+        }
+    }
+});
+</script>
+
+</dom-module>

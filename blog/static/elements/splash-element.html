@@ -1,0 +1,56 @@
+<link rel="import"
+      href="/static/bower_components/polymer/polymer.html">
+
+<link rel="import"
+    href="/static/bower_components/paper-button/paper-button.html">
+
+<link rel="import"
+    href="/static/bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+
+<dom-module id="splash-element">
+{% verbatim %}
+  <template>
+
+    <style is="custom-style">
+        .mainSplash {
+
+        }
+
+        .logo {
+            height: 500px;
+            /*margin: 20px auto 0px auto;*/
+        }
+
+        .goButton {
+            background-color: #E65100;
+            color: white;
+            height: 50px;
+            width: 120px;
+            font-size: 14pt;
+            font-weight: bold;
+            vertical-align: middle;
+            margin: 0 auto 0 auto;
+        }
+    </style>
+
+
+            <div class="mainSplash layout vertical">
+                <img class="logo" src="img/logo.svg" />
+                <paper-button raised class="goButton"
+                onclick="location.href='/app/whoareyou'">
+                    <span>Sign in</span>
+                </paper-button>
+            </div>
+
+
+
+
+  </template>
+{% endverbatim %}
+  <script>
+    Polymer({
+      is: "splash-element"
+    });
+  </script>
+
+</dom-module>
