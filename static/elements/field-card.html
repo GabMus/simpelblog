@@ -1,0 +1,64 @@
+<link rel="import"
+      href="../../bower_components/polymer/polymer.html">
+
+<link rel="import"
+    href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import"
+    href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+
+<link rel="import"
+    href="../../bower_components/paper-card/paper-card.html">
+
+<link rel="import"
+    href="../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="field-card">
+
+  <template>
+
+    <style>
+        .mainView {
+            height: 100%;
+            width: 100%;
+            margin: auto;
+        }
+
+        .mCard {
+            margin: 20px;
+        }
+
+        .mfield {
+            margin: 0 25px 5px 25px;
+        }
+    </style>
+
+
+            <div class="mainView layout vertical">
+
+                <paper-card class="mCard layout vertical" heading="{{mtitle}}">
+                <paper-input class="mfield" label="{{inputholder}}"></paper-input>
+                </paper-card>
+            </div>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: "field-card",
+      properties: {
+          mtitle: {
+          type: String,
+          value: "Card"
+      },
+          inputholder: {
+          type: String,
+          value: "write here"
+      }
+  }
+      });
+  </script>
+
+</dom-module>

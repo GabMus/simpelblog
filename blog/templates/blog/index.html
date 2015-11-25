@@ -22,20 +22,38 @@
 
     <link rel="import"
     href="{% static 'elements/tweaked-card.html' %}">
-
+    
     <link rel="import"
-    href="{% static 'elements/core-toolbar.html' %}">
+    href="{% static 'elements/toolbar-element.html' %}">
 
     <link rel="import"
     href="{% static 'bower_components/iron-flex-layout/classes/iron-flex-layout.html' %}">
+    
+    <link rel="import"
+    href="{% static 'elements/share-button.html' %}">
 
     <style>
         @import url({% static 'theme.css' %});
     </style>
 </head>
 <body>
+
+	<script>
+    function opendelay(uri) {
+        setTimeout(function () {
+    location.href=uri;
+        }, 500);
+    }
+    </script>
+
     <div class="vertical layout center">
-    <core-toolbar mtitle="SimpelBlog" msubtitle="Why should a blog be so complicated? :^)" sel="{{selectedtab}}"></core-toolbar>
+    <!--<core-toolbar mtitle="SimpelBlog" msubtitle="Why should a blog be so complicated? :^)" sel="{{selectedtab}}"></core-toolbar>-->
+    <toolbar-element mtitle="SimpelBlog" sel="{{selectedtab}}">
+    	{% for i in pages_list %}
+
+    	<paper-tab onclick="opendelay('/page/{{i.name}}')" noink="True">{{i.name}}</paper-tab>
+    	{% endfor %}
+    </toolbar-element>
 
     {% if latest_post_list %}
         <div class="horizontal layout wrap center-justified">
@@ -56,19 +74,51 @@
         <tweaked-card
             mtitle="{{ post.posttitle }}">
             <span class="posttext">{{ post.post }}</span>
-            <div class="card-actions">
-                <paper-button onclick="location.href='{% url 'post' post.id %}'">View post</paper-button>
-            </div>
+		     {% if not nothome %}
+		        <div class="card-actions">
+		            <paper-button onclick="location.href='{% url 'post' post.id %}'">View post</paper-button>
+		        </div>
+		     {% endif %}
         </tweaked-card>
         {% endautoescape %}
         {% endif %}
         {% endfor %}
         </div>
-    {% else %}
-        <h1>:P</h1>
-        <p>Nothing here.<br />Check back later.</p>
 
     {% endif %}
+    
+    
+    
+    {% autoescape off %}
+    {% if post %}
+    {% if post.piclink %}
+        <photo-card
+            picurl="{{ post.piclink }}"
+            mtitle="{{ post.posttitle }}">
+            <span class="posttext">{{ post.post }}</span>
+            <div class="card-actions">
+                <share-button></share-button>
+            </div>
+        </photo-card>
+    {% else %}
+        <tweaked-card
+            mtitle="{{ post.posttitle }}">
+            <span class="posttext">{{ post.post }}</span>
+            <div class="card-actions">
+                <share-button></share-button>
+            </div>
+        </tweaked-card>
+    {% endif %}
+
+    {% endif %}
+    {% endautoescape %}
+    
+    
+   	{% if not post and not latest_post_list %}
+   	<h1>:P</h1>
+        <p>Nothing here.<br />Check back later.</p>
+    {% endif %}
+    
         </div>
 
         {% if not nothome %}

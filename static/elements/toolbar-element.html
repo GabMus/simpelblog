@@ -1,0 +1,104 @@
+<link rel="import"
+      href="/static/bower_components/polymer/polymer.html">
+
+<link rel="import"
+    href="/static/bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+
+<link rel="import"
+    href="/static/bower_components/paper-tabs/paper-tabs.html">
+
+<link rel="import"
+    href="/static/bower_components/iron-icons/iron-icons.html">
+
+<link rel="import"
+    href="/static/bower_components/paper-input/paper-input.html">
+
+<link rel="import"
+    href="/static/bower_components/paper-toolbar/paper-toolbar.html">
+
+<link rel="import"
+    href="/static/bower_components/paper-icon-button/paper-icon-button.html">
+
+<dom-module id="toolbar-element">
+{% verbatim %}
+  <template>
+
+    <style>
+        :host {
+            width: 100%;
+            color: white;
+        }
+
+         .mtoolbar {
+             width: 100%;
+             --paper-toolbar-background: #42A5F5;
+             --paper-toolbar-color: white;
+         }
+
+         .tbartitle {
+             font-size: 20pt;
+         }
+
+         .tbarsubtitle {
+             font-size: 14pt;
+         }
+
+         .tbrtabs {
+             background-color: #2196F3;
+             width: 100%;
+             padding: 0;
+             margin: 0;
+         }
+
+         img.logo {
+             width: 50px;
+             margin-right: 24px;
+         }
+    </style>
+
+
+
+    <script>
+    function opendelay(uri) {
+        setTimeout(function () {
+    location.href=uri;
+        }, 500);
+    }
+    </script>
+
+    <paper-toolbar class="small mtoolbar">
+        <img class="logo" src="/static/logo.svg" />
+        <span class="top tbartitle">{{mtitle}}</span>
+
+        <!--<span class="bottom tbarsubtitle">{{msubtitle}}</span>-->
+    </paper-toolbar>
+    <div class="flex center horizontal layout toolbar-tools">
+        <paper-tabs class="tbrtabs" noink="True" selected="{{sel}}">
+                <content></content>
+            </div>
+        </paper-tabs>
+    </div>
+
+  </template>
+{% endverbatim %}
+  <script>
+    Polymer({
+      is: "toolbar-element",
+      properties: {
+          mtitle: {
+              type: String,
+              value: "This is a title"
+          },
+          msubtitle: {
+              type: String,
+              value: "This is a subtitle"
+          },
+          sel: {
+              type: Number,
+              value: -1
+          }
+        }
+      });
+  </script>
+
+</dom-module>

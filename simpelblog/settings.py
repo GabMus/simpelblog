@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.normpath(os.path.dirname(__file__))+'/../static'
 
 
 # Quick-start development settings - unsuitable for production

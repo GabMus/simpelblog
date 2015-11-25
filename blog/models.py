@@ -11,7 +11,14 @@ class BlogPost(Article):
         return self.posttitle
 
 class PagePost(Article):
-    tag = models.CharField(default="default", max_length=150)
+    parentpage = models.ForeignKey('Page', null=True)
 
     def __str__(self):
         return self.tag+" "+self.posttitle
+        
+class Page(models.Model):
+    page_index = models.IntegerField(default=0)
+    name = models.CharField(max_length=200, unique=True)
+    
+    def __str__(self):
+    	return self.name

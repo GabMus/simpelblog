@@ -1,0 +1,93 @@
+<link rel="import"
+      href="../../bower_components/polymer/polymer.html">
+
+<link rel="import"
+    href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import"
+    href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+
+<link rel="import"
+    href="../../bower_components/paper-card/paper-card.html">
+
+<link rel="import"
+    href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+
+<link rel="import"
+    href="../../bower_components/paper-menu/paper-menu.html">
+
+<link rel="import"
+    href="../../bower_components/paper-item/paper-item.html">
+
+<dom-module id="chooser-card">
+
+  <template>
+
+    <style is="custom-style">
+        .mainView {
+            height: 100%;
+            width: 100%;
+            margin: auto;
+        }
+
+        .mCard {
+            margin: 20px;
+        }
+
+        .dropMenu {
+            margin: 0 25px 5px 25px;
+        }
+    </style>
+
+
+            <div class="mainView layout vertical">
+
+                <paper-card class="mCard layout vertical" heading="{{mtitle}}">
+                <paper-dropdown-menu label="{{dropholder}}" class="dropMenu">
+                    <paper-menu class="dropdown-content">
+                    <paper-item>{{drop1}}</paper-item>
+                    <paper-item>{{drop2}}</paper-item>
+                    <paper-item>{{drop3}}</paper-item>
+                    <paper-item>{{drop4}}</paper-item>
+                    </paper-menu>
+                    </paper-dropdown-menu>
+                </paper-card>
+            </div>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: "chooser-card",
+      properties: {
+          mtitle: {
+          type: String,
+          value: "Card"
+      },
+          drop1: {
+              type: String,
+              value: "uno"
+          },
+          drop2: {
+              type: String,
+              value: "uno"
+          },
+          drop3: {
+              type: String,
+              value: "uno"
+          },
+          drop4: {
+              type: String,
+              value: "uno"
+          },
+          dropholder: {
+              type: String,
+              value: "uno"
+          }
+  }
+      });
+  </script>
+
+</dom-module>
