@@ -36,7 +36,7 @@
         @import url({% static 'theme.css' %});
     </style>
 </head>
-<body>
+
 
 	<script>
     function opendelay(uri) {
@@ -44,16 +44,46 @@
     location.href=uri;
         }, 500);
     }
+	var fixed=false;
+	function onHeaderScroll() {
+		var tabs = document.getElementById('tabsBar');
+		if (document.body.scrollTop >= 70 && !fixed) {
+			tabs.style.position = 'fixed';
+			tabs.style.top = '0px';
+			fixed=true;
+		}
+		if (document.body.scrollTop < 70 && fixed) {
+			tabs.style.position = 'relative';
+			fixed=false;
+		}
+
+		
+		
+	}
     </script>
+
+
+
+
+<body onscroll="onHeaderScroll()">
 
     <div class="vertical layout center">
     <!--<core-toolbar mtitle="SimpelBlog" msubtitle="Why should a blog be so complicated? :^)" sel="{{selectedtab}}"></core-toolbar>-->
     <toolbar-element mtitle="SimpelBlog" sel="{{selectedtab}}">
-    	{% for i in pages_list %}
+		
 
-    	<paper-tab onclick="opendelay('/page/{{i.name}}')" noink="True">{{i.name}}</paper-tab>
-    	{% endfor %}
-    </toolbar-element>
+		 <div id="tabsBar" class="flex center horizontal layout toolbar-tools">
+		 <paper-tabs class="tbrtabs" selected="{{selectedtab}}">
+
+				{% for i in pages_list %}
+
+    			<paper-tab onclick="opendelay('/page/{{i.name}}')" noink="True">{{i.name}}</paper-tab>
+    			{% endfor %}
+	
+
+		</paper-tabs>
+		</div>
+        </toolbar-element>
 
     {% if latest_post_list %}
         <div class="horizontal layout wrap center-justified">
