@@ -28,9 +28,18 @@
 
     <link rel="import"
     href="{% static 'bower_components/iron-flex-layout/classes/iron-flex-layout.html' %}">
+
+    <link rel="import"
+    href="{% static 'bower_components/iron-form/iron-form.html' %}">
     
     <link rel="import"
     href="{% static 'elements/share-button.html' %}">
+    
+	<link rel="import"
+	href="{% static 'bower_components/paper-input/paper-input.html' %}">
+
+	<link rel="import"
+	href="{% static 'bower_components/paper-input/paper-textarea.html' %}">
 
     <style>
         @import url({% static 'theme.css' %});
@@ -66,7 +75,6 @@
 
 
 <body onscroll="onHeaderScroll()">
-
     <div class="vertical layout center">
     <!--<core-toolbar mtitle="SimpelBlog" msubtitle="Why should a blog be so complicated? :^)" sel="{{selectedtab}}"></core-toolbar>-->
     <toolbar-element mtitle="SimpelBlog" sel="{{selectedtab}}">
@@ -139,7 +147,37 @@
             </div>
         </tweaked-card>
     {% endif %}
-
+    
+    <form is="iron-form" id="addcommentform" action="{% url 'postcomment' post.id %}" method="POST">
+    {% csrf_token %}
+    <tweaked-card mtitle="Add comment">
+		<div class="vertical layout">
+			<paper-input class="commentfield" char-counter maxlength="20" label="Name" type="text" name="name" required></paper-input>
+			<paper-input class="commentfield" char-counter maxlength="120" label="Email" type="text" name="email" required></paper-input>
+			<paper-textarea class="commentfield" char-counter maxlength="512" label="Comment" type="text" name="text" required></paper-textarea>
+		</div>
+		<div class="card-actions">
+			<paper-button class="submitbtn" raised onclick="document.getElementById('addcommentform').submit();">Submit</paper-card>
+		</div>
+	</tweaked-card>
+    </form>
+    <script>
+    function formResponse(e) {
+		console.log(e);
+		location.href="{% url 'post' post.id %}";
+	}
+	document.getElementById('addcommentform').addEventListener('iron-form-response', this.formResponse);
+    </script>
+    {%if comments %}
+    	<p class="posttitle">Comments</p>
+    	{% for comment in comments %}
+		<tweaked-card
+            mtitle="{{ comment.name }}">
+            <span class="commentmail">{{ comment.email }}</span>
+            <p class="posttext">{{ comment.text }}</p>
+        </tweaked-card>
+        {% endfor %}
+    {% endif %}
     {% endif %}
     {% endautoescape %}
     

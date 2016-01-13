@@ -25,6 +25,14 @@ body {
     text-align: justify;
 }
 
+.commentmail {
+    font-size: 9pt;
+    margin: 0 20px 20px 20px;
+    font-weight: lighter;
+    font-style: oblique;
+    text-align: left;
+}
+
 .blogtitle {
     font-size: 24pt;
     font-weight: bold;
@@ -54,4 +62,13 @@ body {
 #tabsBar {
 	width: 100%;
 	z-index: 999;
+}
+
+.commentfield {
+    margin: 0 25px 5px 25px;
+}
+
+.submitbtn {
+	background-color: #2196F3;
+	color: white;
 }

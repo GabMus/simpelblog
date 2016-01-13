@@ -29,6 +29,7 @@
     "paper-toolbar": "PolymerElements/paper-toolbar#~1.0.4",
     "polymer": "Polymer/polymer#^1.1.0",
     "paper-tabs": "PolymerElements/paper-tabs#~1.0.10",
-    "paper-fab": "PolymerElements/paper-fab#~1.0.6"
+    "paper-fab": "PolymerElements/paper-fab#~1.0.6",
+    "iron-form": "PolymerElements/iron-form#~1.0.13"
   }
 }
